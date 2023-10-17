@@ -1,0 +1,32 @@
+#include "monty.h"
+
+/**
+ * _rotr - rotates the stack to the bottom, the last element
+ * of the stack becomes the top element of the stack
+ * @head: head of the linked list
+ * @line_num: line number
+ * Return: void
+ */
+void _rotr(stack_t **head, unsigned int line_num)
+{
+	stack_t *temp = NULL;
+	(void)line_num;
+
+	(*head == NULL) ? return : (void)0;
+
+	((*head)->next == NULL) ? return : (void)0;
+
+	temp = *head;
+
+	while (temp->next != NULL)
+	{
+	temp = temp->next;
+	}
+
+	temp->prev->next = NULL;
+	temp->next = *head;
+	temp->prev = NULL;
+	(*head)->prev = temp;
+	*head = temp;
+}
+
