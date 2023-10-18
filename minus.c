@@ -20,11 +20,12 @@ void _subtract(stack_t **head, unsigned int line_num)
 	i++;
 	}
 
-	(i < 2) ? (
-	fprintf(stderr, "L%u: can't sub, stack too short\n", line_num),
-	free_glovar(),
-	exit(EXIT_FAILURE)
-	) : (void)0;
+if (i < 2)
+{
+fprintf(stderr, "L%u: can't sub, stack too short\n", line_num);
+free_glovar();
+exit(EXIT_FAILURE);
+}
 
 	temp = (*head)->next;
 	temp->n -= (*head)->n;

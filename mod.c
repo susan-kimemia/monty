@@ -19,18 +19,19 @@ void _find_mod(stack_t **head, unsigned int line_num)
 	temp = temp->next;
 	i++;
 	}
+	if (i < 2)
+	{
+	fprintf(stderr, "L%u: can't mod, stack too short\n", line_num);
+	free_glovar();
+	exit(EXIT_FAILURE);
+	}
 
-	(i < 2) ? (
-	fprintf(stderr, "L%u: can't mod, stack too short\n", line_num),
-	free_glovar(),
-	exit(EXIT_FAILURE)
-	) : (void)0;
-
-	((*head)->n == 0) ? (
-	fprintf(stderr, "L%u: division by zero\n", line_num),
-	free_glovar(),
-	exit(EXIT_FAILURE)
-	) : (void)0;
+	if ((*head)->n == 0)
+	{
+	fprintf(stderr, "L%u: division by zero\n", line_num);
+	free_glovar();
+	exit(EXIT_FAILURE);
+	}
 
 	temp = (*head)->next;
 	temp->n %= (*head)->n;

@@ -8,13 +8,13 @@
  */
 void __pushh(stack_t **head, unsigned int line_num)
 {
-	int n, j;
-
-	(!glovar.arg) ? (
-	fprintf(stderr, "L%d: usage: push integer\n", line_num),
-	free_glovar(),
-	exit(EXIT_FAILURE)
-	) : (void)0;
+int n, j;
+if (!glovar.arg)
+{
+fprintf(stderr, "L%d: usage: push integer\n", line_num);
+free_glovar();
+exit(EXIT_FAILURE);
+}
 
 	for (j = 0; glovar.arg[j] != '\0'; j++)
 	{

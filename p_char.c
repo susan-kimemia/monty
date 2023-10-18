@@ -8,11 +8,12 @@
  */
 void p_char(stack_t **head, unsigned int line_num)
 {
-	(head == NULL || *head == NULL) ? (
-	fprintf(stderr, "L%u: can't pchar, stack empty\n", line_num),
-	free_glovar(),
-	exit(EXIT_FAILURE)
-	) : (void)0;
+if (head == NULL || *head == NULL)
+{
+fprintf(stderr, "L%u: can't pchar, stack empty\n", line_num);
+free_glovar();
+exit(EXIT_FAILURE);
+}
 
 	if ((*head)->n < 0 || (*head)->n >= 128)
 	{
