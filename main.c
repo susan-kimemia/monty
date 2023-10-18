@@ -14,21 +14,6 @@ void free_glovar(void)
 }
 
 /**
- * start_glovar - initializes the global variables
- * @fd: file descriptor
- * Return: void
- */
-void start_glovar(FILE *fd)
-{
-	glovar.lifo = 1;
-	glovar.cont = 1;
-	glovar.arg = NULL;
-	glovar.head = NULL;
-	glovar.fd = fd;
-	glovar.buffer = NULL;
-}
-
-/**
  * check_input - checks if the file exists and if the file can
  * be opened
  * @argc: argument count
@@ -57,6 +42,21 @@ FILE *check_input(int argc, char *argv[])
 }
 
 /**
+ * start_glovar - initializes the global variables
+ * @fd: file descriptor
+ * Return: void
+ */
+void start_glovar(FILE *fd)
+{
+	glovar.lifo = 1;
+	glovar.cont = 1;
+	glovar.arg = NULL;
+	glovar.head = NULL;
+	glovar.fd = fd;
+	glovar.buffer = NULL;
+}
+
+/**
  * main - Entry point
  * @argc: argument count
  * @argv: argument vector
@@ -64,31 +64,31 @@ FILE *check_input(int argc, char *argv[])
  */
 int main(int argc, char *argv[])
 {
-	void (*f)(stack_t **stack, unsigned int line_number);
-	FILE *fd;
-	size_t size = 256;
-	char *lines[2] = {NULL, NULL};
+void (*f)(stack_t **stack, unsigned int line_number);
+FILE *fd;
+size_t size = 256;
+char *lines[2] = {NULL, NULL};
 
-	fd = check_input(argc, argv);
-	start_glovar(fd);
-	while (fgets(glovar.buffer, size, fd) != NULL)
-    {
-        lines[0] = str_tok(glovar.buffer, " \t\n");
-        if (lines[0] && lines[0][0] != '#')
-        {
-            f = get_opcodes(lines[0]);
-            if (!f)
-            {
-                fprintf(stderr, "L%u: ", glovar.cont);
-                fprintf(stderr, "unknown instruction %s\n", lines[0]);
-                free_glovar();
-                exit(EXIT_FAILURE);
-            }
-            glovar.arg = str_tok(NULL, " \t\n");
-            f(&glovar.head, glovar.cont);
-        }
-		glovar.cont++;
-	}
+fd = check_input(argc, argv);
+start_glovar(fd);
+while (fgets(glovar.buffer, size, fd) != NULL)
+{
+lines[0] = str_tok(glovar.buffer, " \t\n");
+if (lines[0] && lines[0][0] != '#')
+{
+f = get_opcodes(lines[0]);
+if (!f)
+{
+fprintf(stderr, "L%u: ", glovar.cont);
+fprintf(stderr, "unknown instruction %s\n", lines[0]);
+free_glovar();
+exit(EXIT_FAILURE);
+}
+glovar.arg = str_tok(NULL, " \t\n");
+f(&glovar.head, glovar.cont);
+}
+glovar.cont++;
+}
 
 	free_glovar();
 

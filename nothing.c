@@ -10,4 +10,3 @@ void __nothing(stack_t **head, unsigned int line_num)
 	(void)head;
 	(void)line_num;
 }
-

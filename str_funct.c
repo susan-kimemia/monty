@@ -21,30 +21,6 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- * _saach - search if a char is inside a string
- * @s: string to check
- * @c: char to find
- * Return: 1 if success 0 if not
- */
-int _saach(char *s, char c)
-{
-	int len = 0;
-
-	do {
-		if (s[len] == c)
-		{
-			break;
-		}
-		len++;
-	} while (s[len] != '\0');
-
-	if (s[len] == c)
-		return (1);
-	else
-		return (0);
-}
-
-/**
  * str_tok - function that cut a string into tokens depending of the delim
  * @s: string to be tokenized
  * @d: delimiters

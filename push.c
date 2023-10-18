@@ -33,4 +33,3 @@ void __pushh(stack_t **head, unsigned int line_num)
 	else
 		add_dnodeint_end(head, n);
 }
-

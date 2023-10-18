@@ -15,10 +15,10 @@ void _rotl(stack_t **head, unsigned int line_num)
 	(void)line_num;
 
 if (*head == NULL)
-		return;
+return;
 
 if ((*head)->next == NULL)
-		return;
+return;
 
 	temp1 = (*head)->next;
 	temp2 = *head;
@@ -34,4 +34,3 @@ if ((*head)->next == NULL)
 	(*head)->prev = temp2;
 	*head = temp1;
 }
-

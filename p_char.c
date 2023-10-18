@@ -22,4 +22,3 @@ void p_char(stack_t **head, unsigned int line_num)
 	}
 	printf("%c\n", (*head)->n);
 }
-

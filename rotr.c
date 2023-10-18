@@ -13,10 +13,10 @@ void _rotr(stack_t **head, unsigned int line_num)
 	(void)line_num;
 
 if (*head == NULL)
-		return;
+return;
 
 if ((*head)->next == NULL)
-		return;
+return;
 
 	temp = *head;
 
@@ -31,4 +31,3 @@ if ((*head)->next == NULL)
 	(*head)->prev = temp;
 	*head = temp;
 }
-

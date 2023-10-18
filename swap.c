@@ -33,4 +33,3 @@ void _we_swap(stack_t **head, unsigned int line_num)
 	(*head)->next = temp;
 	(*head)->prev = NULL;
 }
-

@@ -30,4 +30,3 @@ void _subtract(stack_t **head, unsigned int line_num)
 	temp->n -= (*head)->n;
 	_pop(head, line_num);
 }
-

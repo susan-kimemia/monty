@@ -21,4 +21,3 @@ void prnt_str(stack_t **head, unsigned int line_num)
 
 	printf("\n");
 }
-

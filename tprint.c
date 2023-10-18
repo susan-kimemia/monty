@@ -18,4 +18,3 @@ void top_prnt(stack_t **head, unsigned int line_num)
 
 	printf("%d\n", (*head)->n);
 }
-
