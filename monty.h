@@ -1,14 +1,20 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#define  PS_C_SOS 200809L
+/** Headers **/
+
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include <fcntl.h>
-#include <ctype.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <string.h>
+#include <stdarg.h>
+
+#define DELIM " \t\n"
+/** Data Strutures **/
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -26,6 +32,7 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
+extern char **opcode_read;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -40,57 +47,33 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-/**
- * struct globals - global structure to use in the functions
- * @lifo: is stack or queue
- * @cont: current line
- * @arg: second parameter inside the current line
- * @head: doubly linked list
- * @fd: file descriptor
- * @buffer: input text
- *
- * Description: doubly linked list node structure
- * for stack, queues, LIFO, FIFO ALX project
- */
-typedef struct globals
-{
-	int lifo;
-	unsigned int cont;
-	char  *arg;
-	stack_t *head;
-	FILE *fd;
-	char *buffer;
-} global_t;
+/** Function prototypes **/
+stack_t *add_node(stack_t **head, int n);
+int delete_node(stack_t **head, unsigned int index);
+void print_top(stack_t *head);
+void _swap_node(stack_t **head, unsigned int);
+size_t stack_len(stack_t *head);
 
-extern global_t glovar;
+void get_opcode(stack_t **head, unsigned int);
 
-void __pushh(stack_t **head, unsigned int line_num);
-void _pall(stack_t **head, unsigned int line_num);
-void top_prnt(stack_t **head, unsigned int line_num);
-void _pop(stack_t **head, unsigned int line_num);
-void _we_swap(stack_t **head, unsigned int line_num);
-void _add(stack_t **head, unsigned int line_num);
-void __nothing(stack_t **head, unsigned int line_num);
-void _subtract(stack_t **head, unsigned int line_num);
-void _divide(stack_t **head, unsigned int line_num);
-void _mul(stack_t **head, unsigned int line_num);
-void _find_mod(stack_t **head, unsigned int line_num);
-void p_char(stack_t **head, unsigned int line_num);
-void prnt_str(stack_t **head, unsigned int line_num);
-void _rotl(stack_t **head, unsigned int line_num);
-void _rotr(stack_t **head, unsigned int line_num);
-
-void (*get_opcodes(char *opc))(stack_t **stack, unsigned int line_number);
-
-int _saach(char *s, char c);
-char *str_tok(char *s, char *d);
-int _strcmp(char *s1, char *s2);
-
-stack_t *add_dnodeint_end(stack_t **head, const int n);
-stack_t *add_dnodeint(stack_t **head, const int n);
-void free_dlistint(stack_t *head);
-
-void free_glovar(void);
-
-#endif /* MONTY_H*/
-
+void pop(stack_t **head, unsigned int line_number);
+void pint(stack_t **head, unsigned int line_number);
+void swap(stack_t **head, unsigned int line_number);
+void pall(stack_t **head, unsigned int line_number);
+void push(stack_t **head, char *operand, unsigned int line_number);
+void nop(stack_t **head, unsigned int line_number);
+void add(stack_t **head, unsigned int line_number);
+void sub(stack_t **head, unsigned int line_number);
+void mul(stack_t **head, unsigned int line_number);
+void _div(stack_t **head, unsigned int line_number);
+void mod(stack_t **head, unsigned int line_number);
+void rotl(stack_t **head, unsigned int line_number);
+void rotr(stack_t **head, unsigned int line_number);
+void stack(stack_t **, unsigned int);
+void pchar(stack_t **head, unsigned int line_number);
+void pstr(stack_t **head, unsigned int line_number);
+void free_list(stack_t *head);
+char **tokenize(char *str, const char *delim);
+void free_grid(char **grid);
+int _isnumber(char *s);
+#endif
