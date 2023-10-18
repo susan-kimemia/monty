@@ -3,13 +3,12 @@
 char **opcode_read = NULL;
 
 /**
- * trim - removes leading and trailing white spaces
- * @len: number of characters read
+ * trim - removes leading / trailing white spaces
+ * @len: Num of chars read
  * @trimmed_line: buffer to line trimmed
 */
 void trim(char **trimmed_line, size_t *len)
 {
-	/* Trim leading and trailing whitespace */
 	while (**trimmed_line == ' ' || **trimmed_line == '\t' ||
 			**trimmed_line == '\n')
 	{
@@ -35,12 +34,12 @@ void execute_op(FILE *file, stack_t **head)
 {
 	char line[1024];
 	char ***argv = &opcode_read, *trimmed_line;
-	unsigned int line_number = 0;
+	unsigned int lineNamba = 0;
 	size_t len = 0;
 
 	while (fgets(line, sizeof(line), file) != NULL)
 	{
-		/* Trim leading and trailing whitespace */
+
 		trimmed_line = line;
 		trim(&trimmed_line, &len);
 
@@ -48,23 +47,23 @@ void execute_op(FILE *file, stack_t **head)
 		if (len == 0 || trimmed_line[0] == '#')
 			continue;
 
-		*argv = tokenize(trimmed_line, DELIM);
+		*argv = __tokenize(trimmed_line, DELIM);
 		if (*argv == NULL)
 		{
 			/* Cleanup before leaving */
 			fprintf(stderr, "Error: malloc failed\n");
-			free_grid(*argv);
-			free_list(*head);
+			__freeGrid(*argv);
+			__freeList(*head);
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
-		line_number++;
-		get_opcode(head, line_number);
-		free_grid(*argv);
+		lineNamba++;
+		_let_opcode(head, lineNamba);
+		__freeGrid(*argv);
 	}
 	if (!*head)
 		return;
-	free_list(*head);
+	__freeList(*head);
 }
 
 /**

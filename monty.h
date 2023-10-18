@@ -1,8 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
-
 /** Headers **/
-
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -14,7 +12,8 @@
 #include <stdarg.h>
 
 #define DELIM " \t\n"
-/** Data Strutures **/
+
+/* data Strutures */
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -44,36 +43,37 @@ extern char **opcode_read;
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*f)(stack_t **stack, unsigned int lineNamba);
 } instruction_t;
 
-/** Function prototypes **/
-stack_t *add_node(stack_t **head, int n);
-int delete_node(stack_t **head, unsigned int index);
-void print_top(stack_t *head);
-void _swap_node(stack_t **head, unsigned int);
-size_t stack_len(stack_t *head);
+/** Funct prototypes **/
+stack_t *__addingNode(stack_t **head, int n);
+int __deleteNode(stack_t **head, unsigned int index);
+void _printTop(stack_t *head);
+void __swapNode(stack_t **head, unsigned int);
+size_t _stackLen(stack_t *head);
 
-void get_opcode(stack_t **head, unsigned int);
+void _let_opcode(stack_t **head, unsigned int);
 
-void pop(stack_t **head, unsigned int line_number);
-void pint(stack_t **head, unsigned int line_number);
-void swap(stack_t **head, unsigned int line_number);
-void pall(stack_t **head, unsigned int line_number);
-void push(stack_t **head, char *operand, unsigned int line_number);
-void nop(stack_t **head, unsigned int line_number);
-void add(stack_t **head, unsigned int line_number);
-void sub(stack_t **head, unsigned int line_number);
-void mul(stack_t **head, unsigned int line_number);
-void _div(stack_t **head, unsigned int line_number);
-void mod(stack_t **head, unsigned int line_number);
-void rotl(stack_t **head, unsigned int line_number);
-void rotr(stack_t **head, unsigned int line_number);
+void pop(stack_t **head, unsigned int lineNamba);
+void pint(stack_t **head, unsigned int lineNamba);
+void swap(stack_t **head, unsigned int lineNamba);
+void pall(stack_t **head, unsigned int lineNamba);
+void push(stack_t **head, char *operand, unsigned int lineNamba);
+void nop(stack_t **head, unsigned int lineNamba);
+void add(stack_t **head, unsigned int lineNamba);
+void sub(stack_t **head, unsigned int lineNamba);
+void mul(stack_t **head, unsigned int lineNamba);
+void _div(stack_t **head, unsigned int lineNamba);
+void mod(stack_t **head, unsigned int lineNamba);
+void rotl(stack_t **head, unsigned int lineNamba);
+void rotr(stack_t **head, unsigned int lineNamba);
 void stack(stack_t **, unsigned int);
-void pchar(stack_t **head, unsigned int line_number);
-void pstr(stack_t **head, unsigned int line_number);
-void free_list(stack_t *head);
-char **tokenize(char *str, const char *delim);
-void free_grid(char **grid);
-int _isnumber(char *s);
-#endif
+void __pchar(stack_t **head, unsigned int lineNamba);
+void __pstr(stack_t **head, unsigned int lineNamba);
+void __freeList(stack_t *head);
+char **__tokenize(char *str, const char *delim);
+void __freeGrid(char **grid);
+int __isNamba(char *c);
+
+#endif /* MONTY_H */
