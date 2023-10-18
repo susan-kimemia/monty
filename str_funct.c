@@ -36,7 +36,7 @@ int _saach(char *s, char c)
 			break;
 		}
 		len++;
-	} while (s[len] != '\0')
+	} while (s[len] != '\0');
 
 	if (s[len] == c)
 		return (1);
@@ -81,7 +81,6 @@ char *str_tok(char *s, char *d)
 			j++;
 			i++;
 		}
-	} while (s[i] != '\0')
+	} while (s[i] != '\0');
 	return (NULL);
 }
-

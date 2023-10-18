@@ -67,29 +67,26 @@ int main(int argc, char *argv[])
 	void (*f)(stack_t **stack, unsigned int line_number);
 	FILE *fd;
 	size_t size = 256;
-	ssize_t nlines = 0;
 	char *lines[2] = {NULL, NULL};
 
 	fd = check_input(argc, argv);
 	start_glovar(fd);
-	nlines = getline(&glovar.buffer, &size, fd);
-	while (nlines != -1)
-	{
-		lines[0] = str_tok(glovar.buffer, " \t\n");
-		if (lines[0] && lines[0][0] != '#')
-		{
-			f = get_opcodes(lines[0]);
-			if (!f)
-			{
-				fprintf(stderr, "L%u: ", glovar.cont);
-				fprintf(stderr, "unknown instruction %s\n", lines[0]);
-				free_glovar();
-				exit(EXIT_FAILURE);
-			}
-			glovar.arg = str_tok(NULL, " \t\n");
-			f(&glovar.head, glovar.cont);
-		}
-		nlines = getline(&glovar.buffer, &size, fd);
+	while (fgets(glovar.buffer, size, fd) != NULL)
+    {
+        lines[0] = str_tok(glovar.buffer, " \t\n");
+        if (lines[0] && lines[0][0] != '#')
+        {
+            f = get_opcodes(lines[0]);
+            if (!f)
+            {
+                fprintf(stderr, "L%u: ", glovar.cont);
+                fprintf(stderr, "unknown instruction %s\n", lines[0]);
+                free_glovar();
+                exit(EXIT_FAILURE);
+            }
+            glovar.arg = str_tok(NULL, " \t\n");
+            f(&glovar.head, glovar.cont);
+        }
 		glovar.cont++;
 	}
 
@@ -97,4 +94,3 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
-

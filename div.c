@@ -21,7 +21,7 @@ void _divide(stack_t **head, unsigned int line_num)
 
 	(i < 2) ? (
 	fprintf(stderr, "L%u: can't div, stack too short\n", line_num),
-	free_glovar(),
+	free_glovar()
 	) : (void)0;
 
 	((*head)->n == 0) ? (
@@ -34,4 +34,3 @@ void _divide(stack_t **head, unsigned int line_num)
 	temp->n /= (*head)->n;
 	_pop(head, line_num);
 }
-

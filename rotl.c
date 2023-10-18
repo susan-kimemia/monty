@@ -14,8 +14,11 @@ void _rotl(stack_t **head, unsigned int line_num)
 	stack_t *temp2 = NULL;
 	(void)line_num;
 
-	(*head == NULL) ? return : (void)0;
-	((*head)->next == NULL) ? return : (void)0;
+if (*head == NULL)
+		return;
+
+if ((*head)->next == NULL)
+		return;
 
 	temp1 = (*head)->next;
 	temp2 = *head;

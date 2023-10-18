@@ -12,9 +12,11 @@ void _rotr(stack_t **head, unsigned int line_num)
 	stack_t *temp = NULL;
 	(void)line_num;
 
-	(*head == NULL) ? return : (void)0;
+if (*head == NULL)
+		return;
 
-	((*head)->next == NULL) ? return : (void)0;
+if ((*head)->next == NULL)
+		return;
 
 	temp = *head;
 

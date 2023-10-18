@@ -17,7 +17,7 @@ void prnt_str(stack_t **head, unsigned int line_num)
 	do {
 		printf("%c", temp->n);
 		temp = temp->next;
-	} while (temp && temp->n > 0 && temp->n < 128)
+	} while (temp && temp->n > 0 && temp->n < 128);
 
 	printf("\n");
 }
