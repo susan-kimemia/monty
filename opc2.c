@@ -9,22 +9,17 @@ void __pstr(stack_t **head, unsigned int lineNamba)
 {
 	stack_t *node = *head;
 
-	(void)lineNamba;
-while (node)
+(void)lineNamba;
+for (; node; node = node->next)
 {
 if (node->n >= 0 && node->n <= 127)
 {
 if (node->n == 0)
-{
 break;
-}
 putchar(node->n);
 }
 else
-{
 break;
-}
-node = node->next;
 }
 putchar('\n');
 }

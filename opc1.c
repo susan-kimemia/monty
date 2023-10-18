@@ -19,21 +19,19 @@ return;
 		swap(head, lineNamba);
 		return;
 	}
-	else
-	{
-		first = tail = *head;
-		second = (*head)->next;
-for (tail = *head; tail->next; tail = tail->next)
+else
 {
-/* Loop until tail points to the last node */
+first = tail = *head;
+second = (*head)->next;
+while (tail->next)
+tail = tail->next;
+tail->next = first;
+first->next = NULL;
+first->prev = tail;
+second->prev = NULL;
+*head = second;
+return;
 }
-		tail->next = first;
-		first->next = NULL;
-		first->prev = tail;
-		second->prev = NULL;
-		*head = second;
-		return;
-	}
 }
 
 /**
