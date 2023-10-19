@@ -12,8 +12,8 @@ void _let_opcode(stack_t **head, unsigned int lineNamba)
 	instruction_t opcodes[] = {
 		{"nop", nop}, {"pall", pall},
 		{"pint", pint}, {"swap", swap},
-		{"pop", pop}, {"add", add}, {"__pstr", __pstr},
-		{"sub", sub}, {"div", _div}, {"__pchar", __pchar},
+		{"pop", pop}, {"add", add}, {"pstr", pstr},
+		{"sub", sub}, {"div", _div}, {"pchar", pchar},
 		{"mul", mul}, {"mod", mod},
 		{"rotl", rotl}, {"rotr", rotr}, {"stack", stack}};
 

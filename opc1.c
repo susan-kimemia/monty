@@ -67,7 +67,7 @@ void rotr(stack_t **head, unsigned int lineNamba)
  * @lineNamba: command line number
  */
 
-void __pchar(stack_t **head, unsigned int lineNamba)
+void pchar(stack_t **head, unsigned int lineNamba)
 {
 if (*head == NULL)
 {

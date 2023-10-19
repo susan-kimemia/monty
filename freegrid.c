@@ -9,10 +9,11 @@ void __freeGrid(char **grid)
 {
 char **copy_grid = grid;
 
-for (; *grid != NULL; grid++)
-{
+do {
 free(*grid);
-}
+grid++;
+} while (*grid != NULL);
+
 free(copy_grid);
 }
 

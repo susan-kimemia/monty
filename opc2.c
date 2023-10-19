@@ -6,21 +6,24 @@
  * @lineNamba: command line number
  */
 
-void __pstr(stack_t **head, unsigned int lineNamba)
+void pstr(stack_t **head, unsigned int lineNamba)
 {
 stack_t *node = *head;
 
 (void)lineNamba;
-for (; node; node = node->next)
-{
+
+do {
 if (node->n >= 0 && node->n <= 127)
 {
 if (node->n == 0)
-	break;
+break;
 putchar(node->n);
 }
 else
 break;
-}
+
+node = node->next;
+} while (node);
+
 putchar('\n');
 }
